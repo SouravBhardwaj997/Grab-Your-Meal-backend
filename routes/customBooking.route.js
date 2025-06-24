@@ -11,7 +11,7 @@ const router = Router();
 router.post("/", addCustomBooking);
 
 router.get("/", getUserCustomBookings);
-router.get("/all-bookings", adminMiddleware, getAllCustomBookings);
+router.get("/all-bookings", getAllCustomBookings);
 router.put("/:id", adminMiddleware, updateStatusOfCustomBooking);
 
 export default router;
