@@ -113,7 +113,11 @@ const loginUser = async (req, res) => {
     const token = await generateToken(user._id);
 
     // Return response
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      httpOnly: true, // ✅ can't access from frontend JS
+      secure: true, // ✅ must be true for HTTPS
+      sameSite: "None",
+    });
     return res.status(201).json({
       success: true,
 
@@ -185,7 +189,10 @@ const updateProfile = async (req, res) => {
 
 const logout = (req, res) => {
   res.cookie("token", "", {
-    httpOnly: true,
+    httpOnly: true, // ✅ can't access from frontend JS
+    secure: true, // ✅ must be true for HTTPS
+    sameSite: "None",
+
     expires: new Date(0), // Expire the cookie
   });
 
