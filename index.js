@@ -42,7 +42,7 @@ app.use(cookieParser());
 app.use("/api/user", userRoute); //Successfully working in postman
 app.use("/api/booking", authMiddleware, bookingRoute);
 app.use("/api/custom-booking", authMiddleware, customeBookingRoute);
-app.use("/api/payment", authMiddleware, paymentRoute);
+app.use("/api/payment", paymentRoute);
 
 //routes -> Admin
 app.use("/api/admin/meals", mealRoute); //Successfully Workin gin Postman
