@@ -4,7 +4,7 @@ import User from "../models/user.model.js";
 const authMiddleware = async (req, res, next) => {
   try {
     // Get token from cookies
-    console.log(req);
+
     const token = req.cookies?.token;
     console.log(token);
     if (!token) {
