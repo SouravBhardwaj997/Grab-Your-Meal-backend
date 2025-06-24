@@ -4,7 +4,8 @@ import User from "../models/user.model.js";
 const adminMiddleware = async (req, res, next) => {
   try {
     const token = req.cookies.token; // Extract token from cookies
-
+    // console.log(req.);
+    console.log("token:", req.cookies);
     if (!token) {
       return res.status(401).json({ success: false, message: "Unauthorized" });
     }

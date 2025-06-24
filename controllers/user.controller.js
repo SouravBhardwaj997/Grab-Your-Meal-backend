@@ -66,7 +66,11 @@ const createNewUser = async (req, res) => {
 
     // Generate authentication token
     const token = await generateToken(user._id);
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      httpOnly: true, //  can't access from frontend JS
+      secure: true, // must be true for HTTPS
+      sameSite: "None",
+    });
     // Return response
     return res.status(201).json({
       success: true,
