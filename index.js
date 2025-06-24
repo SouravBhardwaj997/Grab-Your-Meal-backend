@@ -19,9 +19,20 @@ const PORT = process.env.PORT;
 //middlewares
 app.use(express.json());
 //chnaged cors
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://grab-your-meal.vercel.app", // ✅ no trailing slash
+];
+
 app.use(
   cors({
-    origin: "https://grab-your-meal.vercel.app/",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
